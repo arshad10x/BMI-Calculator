@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./bmi.css" />
+    <script type="text/javascript">
+      function CalBMI(){
+        var height=document.getElementById("height").value;
+        var weight=document.getElementById("weight").value;
+       var male=document.getElementById("male");
+       var female=document.getElementById("female");
+
+       var bmi=weight/(height/100*height/100);
+       var total=bmi.toFixed(1);
+       var  result=document.getElementById("bmi").value;
+      
+       if(male.checked){
+        document.querySelector("p").innerHTML="";
+       }
+       else if (female.checked){
+        document.querySelector("p").innerHTML="";
+       }
+
+       if(bmi<18.5){
+        document.getElementById("bmi").innerHTML=`
+        ${total}`.fontcolor("yellow");
+        document.getElementById("result").innerHTML=`
+        <p>Opps!! you are under Weight range</p>`.fontcolor("yellow");
+       } else if(bmi>=18.5 && bmi<=25){
+        document.getElementById("bmi").innerHTML=`
+        ${total}`;
+        document.getElementById("result").innerHTML=`
+        <p>Hurray!! You are under healthy weight range</p>`;
+       }else if(bmi>=25 && bmi<=30){
+        document.getElementById("bmi").innerHTML=`
+        ${total}`;
+        document.getElementById("result").innerHTML=`
+        <p>You are under over weight range</p>`;
+       }else if(bmi>=30){
+        document.getElementById("bmi").innerHTML=`
+        ${total}`.fontcolor("red");
+        document.getElementById("result").innerHTML=`
+        <p>You falls within the obesity range ⚠⚠</p>`.fontcolor("red");
+       }
+      }
+    </script>
+  </head>
+  <body>
+      <div class="card">
+        <div class="card-header">
+          <p style="font-size: 28px; font-weight: bold;">BMI CALCULATOR</p>
+          <!-- <p>A measure of body fat in adults</p> -->
+          <div>
+            <span class="col-1"></span>
+            <span class="col-2"></span>
+            <span class="col-3"></span>
+            <span class="col-4"></span>
+            <span class="col-5"></span>
+          </div>
+          <h1 id="bmi"></h1>
+          <p id="result"></p>
+          
+        </div>
+        <div class="card-main">
+          <div class="card-body">
+            <span class="txt">Fill out below to find your Body Mass Index!</span>
+            <div class="inpt-radio">
+              <div class="male">
+                <input type="radio" name="gender" value="M" id="male" />
+                <label class="label-1">Male</label>
+              </div>
+  
+              <div class="female">
+                <input type="radio" name="gender" value="F" id="female" checked/>
+                <label class="label-2">Female</label>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="label">Age</span>
+            <span class="label">Height</span>
+            <span class="label">Weight</span> <br />
+            <span >
+              <input type="text" size="7" class="box box-1" id="age" />
+            </span>
+  
+            <span class="yellow">
+              <input type="text" size="7" class="box box-2" id="height" placeholder="cm"/>
+            </span>
+  
+            <span class="blue">
+              <input type="text" size="7" class="box box-3" id="weight" placeholder="kg"/>
+            </span>
+          </div>
+          <button class="btn" onclick="CalBMI()">Calculate BMI</button>
+        </div>
+      </div>
+  </body>
+</html>
